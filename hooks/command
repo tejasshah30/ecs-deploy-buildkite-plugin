@@ -78,13 +78,13 @@ function create_service() {
         --cluster "$cluster_name" \
         --service "$service_name" \
 
-        
+           #     --query 'services[?status=="ACTIVE"].status' \
+
     service_defined=$(
       aws ecs describe-services \
         "${aws_default_args[@]}" \
         --cluster "$cluster_name" \
         --service "$service_name" \
-        --query 'services[?status=="ACTIVE"].status' \
         --output text \
         | wc -l
     )
